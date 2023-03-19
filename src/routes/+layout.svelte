@@ -2,7 +2,7 @@
   import "../app.css";
 </script>
 
-<nav>
+<nav class="mt-2">
     <body class="bg-black">
         <div id="container" class="flex flex-column justify-center">
             <div id="nav" class="flex flex-row border-4 rounded-lg border-white">
