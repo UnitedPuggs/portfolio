@@ -6,8 +6,7 @@
 
     async function get_image_urls() {
         const res = await fetch("/");
-        const obj = await res.json()
-        console.log(obj)
+        const obj = await res.json();
         for(let i = 0; i < obj.images.length; ++i) {
             pics.push("https://gzytpbcundzfdkivabpf.supabase.co/storage/v1/object/public/portfolio/images/" + obj.images[i]["name"])
         }
@@ -25,7 +24,9 @@
     }
 
     let loaded = false;
-    onMount(() => {loaded = true; get_image_urls()});
+    onMount(() => {
+         loaded = true; 
+         });
 </script>
 
 <svelte:head>

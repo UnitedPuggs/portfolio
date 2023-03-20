@@ -6,9 +6,9 @@ export async function GET() {
         .storage
         .from('portfolio')
         .list('images', {offset: 1})
-
+        
     if(data)
-        return json({ images: data})
+        return json({ images: data })
 
     if(error)
         console.log(error)
