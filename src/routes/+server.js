@@ -9,4 +9,7 @@ export async function GET() {
 
     if(data)
         return json({ images: data})
+
+    if(error)
+        console.log(error)
 }
