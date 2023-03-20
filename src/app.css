@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities
+@tailwind utilities;
+
+@layer components {
+    .nav-btn {
+        @apply font-mono text-white hover:opacity-75 m-2;
+    }
+}
