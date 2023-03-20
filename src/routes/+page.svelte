@@ -1,12 +1,18 @@
 <script>
     import { fade, fly } from 'svelte/transition';
     import { onMount } from 'svelte';
+    
+    let pics = []
 
-    const pics = [
-        "/assets/coolguy.jpg",
-        'https://picsum.photos/300/200?random=1',
-        'https://picsum.photos/300/200?random=2'
-    ]
+    async function get_image_urls() {
+        const res = await fetch("/");
+        const obj = await res.json()
+        console.log(obj)
+        for(let i = 0; i < obj.images.length; ++i) {
+            pics.push("https://gzytpbcundzfdkivabpf.supabase.co/storage/v1/object/public/portfolio/images/" + obj.images[i]["name"])
+        }
+        pics = pics;
+    }
 
     let index = 0;
 
@@ -19,7 +25,7 @@
     }
 
     let loaded = false;
-    onMount(() => loaded = true);
+    onMount(() => {loaded = true; get_image_urls()});
 </script>
 
 <svelte:head>
@@ -33,19 +39,21 @@
     <!-- Gonna have to figure out how to make an image carousel and how to sorta upload images maybe sorta autonomously -->
     <div class="flex flex-row" transition:fade={{ delay: 150 }}>
         {#if index > 0}
-            <button class="text-white m-2" on:click={back}>&#60;</button>
+            <button class="text-white m-2 pl-5" on:click={back}>&#60;</button>
         {:else}
-            <button class="invisible m-2">&#60;</button>
+            <button class="invisible m-2 pl-5">&#60;</button>
         {/if}
 
         {#each [pics[index]] as pic}
-            <img src={pic} alt="" class="mt-4 h-96 w-[230px] md:w-96 md:h-[40rem] rounded-md">
+            <img src={pic} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md">
         {/each}
         {#if index != pics.length - 1}
-            <button class="text-white m-2" on:click={next}>&#62;</button>
+            <button class="text-white m-2 pr-5" on:click={next}>&#62;</button>
         {:else}
-            <button class="invisible m-2">&#60;</button>
+            <button class="invisible m-2 pr-5">&#60;</button>
         {/if}
     </div>
-    
+    <div class="text-white mt-20">
+        about me
+    </div>
 </div>
