@@ -41,16 +41,16 @@
     <!-- Gonna have to figure out how to make an image carousel and how to sorta upload images maybe sorta autonomously -->
     <div class="flex flex-row" transition:fade={{ delay: 150 }}>
         {#if index > 0}
-            <button class="text-white m-2 pl-5" on:click={back}>&#60;</button>
+            <button class="text-white m-2 pl-5 hover:opacity-75" on:click={back}>&#60;</button>
         {:else}
             <button class="invisible m-2 pl-5">&#60;</button>
         {/if}
 
         {#each [pics[index]] as pic}
-            <img src={pic} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md">
+            <img src={pic} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md object-contain">
         {/each}
         {#if index != pics.length - 1}
-            <button class="text-white m-2 pr-5" on:click={next}>&#62;</button>
+            <button class="text-white m-2 pr-5 hover:opacity-75" on:click={next}>&#62;</button>
         {:else}
             <button class="invisible m-2 pr-5">&#60;</button>
         {/if}
