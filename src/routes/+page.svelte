@@ -39,7 +39,7 @@
         <h1 transition:fly={{ y: 20, duration: 500 }} class="text-white mt-5 font-bold text-2xl font-mono">Hi, I'm Eddie!</h1>
     {/if}
     <!-- Gonna have to figure out how to make an image carousel and how to sorta upload images maybe sorta autonomously -->
-    <div class="flex flex-row" transition:fade={{ delay: 150 }}>
+    <div class="flex flex-row select-none" transition:fade={{ delay: 150 }}>
         {#if index > 0}
             <button class="text-white m-2 pl-5 hover:opacity-75" on:click={back}>&#60;</button>
         {:else}
@@ -47,7 +47,7 @@
         {/if}
 
         {#each [pics[index]] as pic}
-            <img src={pic} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md object-contain">
+            <img src={pic} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md object-contain border-4 border-white">
         {/each}
         {#if index != pics.length - 1}
             <button class="text-white m-2 pr-5 hover:opacity-75" on:click={next}>&#62;</button>
