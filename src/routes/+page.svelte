@@ -3,6 +3,9 @@
     import { onMount } from 'svelte';
     
     let pics = []
+    let index = 0;
+    let loaded = false;
+    let aboutMeVis = false;
 
     async function get_image_urls() {
         const res = await fetch("/image");
@@ -13,8 +16,6 @@
         pics = pics;
     }
 
-    let index = 0;
-
     function next() {
         index = (index + 1) % pics.length;
     }
@@ -23,18 +24,24 @@
         index = (index - 1) % pics.length;
     }
 
-    let loaded = false;
+    function toggleAboutMe() {
+        aboutMeVis = !aboutMeVis;
+    }
+
     onMount(() => {
          loaded = true; 
          get_image_urls();
          });
+
+
+
 </script>
 
 <svelte:head>
     <title>home</title>
 </svelte:head>
 
-<div class="flex flex-col justify-center items-center">
+<div id="container" class="flex flex-col justify-center items-center font-mono">
     {#if loaded}
         <h1 transition:fly={{ y: 20, duration: 500 }} class="text-white mt-5 font-bold text-2xl font-mono">Hi, I'm Eddie!</h1>
     {/if}
@@ -55,7 +62,12 @@
             <button class="invisible m-2 pr-5">&#60;</button>
         {/if}
     </div>
-    <div class="text-white mt-20">
-        about me
+    <div class="text-white mt-20 flex flex-col">
+        <button class="hover:opacity-75 m-1">experience  v</button>
+        <button class="hover:opacity-75 m-1" on:click={toggleAboutMe}>about me  v</button>
+        {#if aboutMeVis}
+            <p class="text-gray-40">test test test test test test test test test test</p>
+        {/if}
+        <button class="hover:opacity-75 m-1">technical skills  v</button>
     </div>
 </div>
