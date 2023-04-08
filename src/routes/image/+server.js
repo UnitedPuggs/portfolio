@@ -5,7 +5,7 @@ export async function GET() {
     const { data, error } = await supabase
         .storage
         .from('portfolio')
-        .list('images', {offset: 1})
+        .list('images', {offset: 0})
         
     if(data)
         return json({ images: data })
