@@ -5,7 +5,10 @@
     let pics = []
     let index = 0;
     let loaded = false;
+
+    let experienceVis = false;
     let aboutMeVis = false;
+    let technicalVis = false;
 
     async function get_image_urls() {
         const res = await fetch("/image");
@@ -24,8 +27,16 @@
         index = (index - 1) % pics.length;
     }
 
+    function toggleExperience() {
+        experienceVis = !experienceVis;
+    }
+
     function toggleAboutMe() {
         aboutMeVis = !aboutMeVis;
+    }
+
+    function toggleTechnical() {
+        technicalVis = !technicalVis;
     }
 
     onMount(() => {
@@ -62,12 +73,36 @@
             <button class="invisible m-2 pr-5">&#60;</button>
         {/if}
     </div>
-    <div class="text-white mt-20 flex flex-col">
-        <button class="hover:opacity-75 m-1">experience  v</button>
+    <div class="text-white mt-20 mb-10 flex flex-col text-left max-w-3xl" transition:fade={{ delay: 150 }}>
+        <button class="hover:opacity-75 m-1" on:click={toggleExperience}>experience  v</button>
+        {#if experienceVis}
+            <p><strong>Clubspeed</strong> - Aug. 2021 - Now<br>
+            <em>IT Support Engineer / Automation Specialist</em><br>
+               <ul class="list-disc pl-5">
+                <li>Provided technical support for the company's software and troubleshot associated hardware</li>
+                <li>Created complex T-SQL queries and scripts to efficiently automate the manipulation of data for MSSQL servers associated with the company's software.</li>
+                <li>Working on an <a href="https://github.com/UnitedPuggs/SupportSearch">internal tool</a> (with a helper <a href="https://github.com/UnitedPuggs/SupportSearch-Admin">admin site</a>)
+                    in the form of a Chrome extension that utilizes internal APIs to more efficiently server useful customer information.</li>
+               </ul>
+        {/if}
         <button class="hover:opacity-75 m-1" on:click={toggleAboutMe}>about me  v</button>
         {#if aboutMeVis}
-            <p class="text-gray-40">test test test test test test test test test test</p>
+            <p class="text-gray-40">
+                I'm a computer science student of CSU - Fullerton with an expected graduation date of Dec. 2023! I'm currently looking for full-time roles starting
+                in June of 2023, as I'll be "graduated" by May (I only have one class in fall). I love learning and intend to finish up a degree in Electrical Engineering and another in Economics once I've got 
+                some more stability and experience in the field. I also love cars, especially my '01 Miata, and motorcycles and would like to explore the software side of car manufacturing.
+                My specializations so far have been full-stack web development and data engineering with a bit of a machine learning emphasis. I'm interested in learning more about human-computer interaction,
+                data engineering, and machine learning.
+            </p>
         {/if}
-        <button class="hover:opacity-75 m-1">technical skills  v</button>
-    </div>
+        <button class="hover:opacity-75 m-1" on:click={toggleTechnical}>technical skills  v</button>
+        {#if technicalVis}
+            <p>
+                <strong>Fluent:</strong> C++, SQL, Python<br>
+                <strong>Very Conversational:</strong> Java, ARM Assembly, Linux(Ubuntu/Debian), Qt Creator, SvelteKit, TailwindCSS<br>
+                <strong>Conversational:</strong> Git, HTML, CSS, JavaScript, PHP, R, Apache2, nginx, Redis, Quart/Flask<br>
+                <strong>Learning:</strong> Rust, Apache Spark, PowerShell, Kafka
+            </p>
+        {/if}
+    </div >
 </div>
