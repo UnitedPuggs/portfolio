@@ -72,6 +72,7 @@
 <div id="container" class="flex flex-col justify-center items-center font-mono">
     {#if loaded}
         <h1 transition:fly={{ y: 20, duration: 500 }} class="text-white mt-5 font-bold text-2xl font-mono">Hi, I'm Eddie!</h1>
+        <p transition:fly={{ y: 30, duration: 750 }} class="text-white font-mono">Your next best Software Engineer / Data Engineer</p>
     {/if}
     <!-- Gonna have to figure out how to make an image carousel and how to sorta upload images maybe sorta autonomously -->
     <div class="flex flex-row select-none" transition:fade={{ delay: 150 }}>
@@ -90,7 +91,7 @@
             <button class="invisible m-2 pr-5">&#60;</button>
         {/if}
     </div>
-    <div class="text-white mt-20 mb-10 flex flex-col text-left max-w-3xl" transition:fade={{ delay: 150 }}>
+    <div class="text-white mt-10 mb-10 flex flex-col text-left max-w-3xl" transition:fade={{ delay: 150 }}>
         <button class="hover:opacity-75 m-1" on:click={toggleExperience}>{expButton}</button>
         {#if experienceVis}
             <div transition:slide>
