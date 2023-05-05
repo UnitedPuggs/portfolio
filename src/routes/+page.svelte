@@ -101,7 +101,7 @@
                 <li>Provided technical support for the company's software and troubleshot associated hardware</li>
                 <li>Created complex T-SQL queries and scripts to efficiently automate the manipulation of data for MSSQL servers associated with the company's software.</li>
                 <li>Working on an <a href="https://github.com/UnitedPuggs/SupportSearch" class="underline hover:no-underline">internal tool</a> (with a helper <a href="https://github.com/UnitedPuggs/SupportSearch-Admin" class="underline hover:no-underline">admin site</a>)
-                    in the form of a Chrome extension that utilizes internal APIs to more efficiently server useful customer information.</li>
+                    in the form of a Chrome extension that utilizes internal APIs to more efficiently serve useful customer information.</li>
                </ul>
             </div>
         {/if}
