@@ -27,7 +27,7 @@
   let project5_desc = "A budget management system. Allows for users to input their expenses and have this program determine their savings and spendings. Allows for goals to be made too. Functionally, it's about 99% complete, just need some flair :)"
 
   //Herding Cats
-  let project6_title = "herding.cat";
+  let project6_title = "Herding Cats";
   let project6_tech = ['python', 'quart', 'sveltekit', 'tailwindcss', 'debian', 'nginx', 'aws dynamodb']
   let project6_desc = "My current, and probably largest, project. A full-stack web app focusing on the gamification of the typical event planning software to assist users that have issues planning events.";
 </script>
