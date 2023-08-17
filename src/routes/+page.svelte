@@ -1,7 +1,6 @@
 <script>
     import { fade, fly, slide } from 'svelte/transition';
     import { onMount } from 'svelte';
-  import { transition_in } from 'svelte/internal';
     
     let pics = []
     let index = 0;
