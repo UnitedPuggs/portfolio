@@ -1,9 +1,12 @@
-async function get_data() {
-    const req = await fetch("http://localhost:5173/projects")
-    const res = await req.json()
-    return res;
-}
+import { supabase } from '$lib/supabaseClient'
 
-export function load() {
-    return get_data()
+export async function load() {
+    const { data: projects, error } = await supabase
+    .from('projects')
+    .select('*')
+
+    if(error)
+        return {"load": error}
+    
+    return {project: projects};
 }

@@ -9,7 +9,7 @@
 
 <body>
     <div class="grid grid-cols-2 gap-10 mt-7 max-w-4xl mx-auto text-white">
-        {#each data.projects as projects}
+        {#each data.project as projects}
             <Project {...projects} /> 
         {/each}
     </div>
