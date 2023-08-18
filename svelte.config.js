@@ -9,7 +9,7 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		prerender: {
-			entries: ["/projects", "/projects/portfolio", "/projects/cargos", "/projects/digidigits", "/projects/finance-calc", "/projects/support-search", "/projects/herding-cats"]
+			entries: ["/", "/contact", "/projects/cargos", "/projects/digidigits", "/projects/finance-calc", "/projects/support-search", "/projects/herding-cats"]
 		}
 	},
 	preprocess: vitePreprocess()
