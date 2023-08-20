@@ -84,6 +84,7 @@
         {#each [pics[index]] as pic}
             <img src={pic} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md object-contain border-4 border-white">
         {/each}
+        
         {#if index != pics.length - 1}
             <button class="text-white m-2 pr-5 hover:opacity-75" on:click={next}>&#62;</button>
         {:else}
@@ -95,12 +96,18 @@
         {#if experienceVis}
             <div transition:slide>
             <p><strong>Clubspeed</strong> - Aug. 2021 - Now<br>
-            <em>IT Support Engineer / Automation Specialist</em><br>
+            <strong><em>Jr. Software Engineer</em></strong><br>
+                <ul class="list-disc pl-5">
+                    <li>Primarily working on booking software built with NextJS 12, assisting create more dynamically styled components with TailwindCSS</li>
+                    <li>Serving as a pillar of knowledge for technologies for newer projects, namely Redux, Redux Saga, and NextJS.</li>
+                    <li>Contributing to the development and move to cloud-based software and increased modularity of existing parts of the core product.</li>
+                </ul>
+            <strong><em>IT Support Engineer / Automation Specialist (Aug. 2021 - Aug. 2023)</em></strong><br>
                <ul class="list-disc pl-5">
-                <li>Provided technical support for the company's software and troubleshot associated hardware</li>
-                <li>Created complex T-SQL queries and scripts to efficiently automate the manipulation of data for MSSQL servers associated with the company's software.</li>
-                <li>Working on an <a href="https://github.com/UnitedPuggs/SupportSearch" class="underline hover:no-underline">internal tool</a> (with a helper <a href="https://github.com/UnitedPuggs/SupportSearch-Admin" class="underline hover:no-underline">admin site</a>)
-                    in the form of a Chrome extension that utilizes internal APIs to more efficiently serve useful customer information.</li>
+                    <li>Provided technical support for the company's software, contributing greatly to general knowledge relating to SQL and the use of PowerShell scripts to more quickly onboard customers.</li>
+                    <li>Created complex T-SQL queries that helped speed up or automate manual tasks for customers pertaining to racing data for tens of thousands of guests and generating pre-made bookings by customer request.</li>
+                    <li>Developed PowerShell and batch scripts that saved up to 40 man hours per year for SSL cert updates.</li>
+                    <li>Continuous development of an internal tool in the form of a Chrome extension that utilizes internal APIs to more efficiently display useful customer information.</li>
                </ul>
             </div>
         {/if}
@@ -108,11 +115,11 @@
         {#if aboutMeVis}
             <div transition:slide>
             <p class="text-gray-40">
-                I'm a computer science student of CSU - Fullerton with an expected graduation date of Dec. 2023! I'm currently looking for full-time roles starting
-                in June of 2023, as I'll be "graduated" by May (I only have one class in fall). I love learning and intend to finish up a degree in Electrical Engineering and another in Economics once I've got 
-                some more stability and experience in the field. I also love cars, especially my '01 Miata, and motorcycles and would like to explore the software side of car manufacturing.
-                My specializations so far have been full-stack web development and data engineering with a bit of a machine learning emphasis. I'm interested in learning more about human-computer interaction,
-                data engineering, and machine learning.
+                I'm a computer science student of CSU - Fullerton who graduated in May 2023. I'm looking for full-time roles related to software engineering, data engineering, or anything where I can make an impact! 
+                I love learning and intend to finish up a second degree (of which I'm halfway completed with) in Electrical Engineering and possibly some more in the future after I achieve financial stability. In case it wasn't obvious,
+                I love cars, motorcycles, and just motorsports in general. I have a little track monster '01 Mazda Miata I've been modifying and repairing for a few years and 3 other vehicles at the moment. I'd be incredibly interested
+                at the opportunity to actually work on the software side of car manufacturing! My specializations are full-stack web development with a smidge of data science/engineering. I'm interested in learning more about
+                human-computer interaction, machine learning, and embedded software/systems.
             </p>
             </div>
         {/if}
@@ -121,9 +128,9 @@
             <div transition:slide>
             <p>
                 <strong>Fluent:</strong> C++, SQL, Python<br>
-                <strong>Very Conversational:</strong> Java, ARM Assembly, Linux(Ubuntu/Debian), Qt Creator, SvelteKit, TailwindCSS<br>
-                <strong>Conversational:</strong> Git, HTML, CSS, JavaScript, PHP, R, Apache2, nginx, Redis, Quart/Flask<br>
-                <strong>Learning:</strong> Rust, Apache Spark, PowerShell, Kafka
+                <strong>Very Conversational:</strong> Java, ARM Assembly, Linux, Qt Creator, SvelteKit, TailwindCSS, git<br>
+                <strong>Conversational:</strong> HTML, CSS, JavaScript, PHP, R, Apache2, nginx, Redis, Quart/Flask, NextJS, React<br>
+                <strong>Learning:</strong> Rust, Apache Spark, PowerShell, GCP, AWS
             </p>
             </div>
         {/if}
