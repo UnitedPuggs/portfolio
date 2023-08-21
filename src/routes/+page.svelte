@@ -15,10 +15,10 @@
     let technicalButton = "technical skills  v";
 
     async function get_image_urls() {
-        const res = await fetch("/image");
+        const res = await fetch("/image-urls");
         const obj = await res.json();
         for(let i = 0; i < obj.images.length; ++i) {
-            pics.push("https://gzytpbcundzfdkivabpf.supabase.co/storage/v1/object/public/portfolio/images/" + obj.images[i]["name"])
+            pics.push(obj.images[i].url)
         }
         pics = pics;
     }
@@ -58,10 +58,7 @@
     onMount(() => {
          loaded = true; 
          get_image_urls();
-         });
-
-
-
+    });
 </script>
 
 <svelte:head>
@@ -70,8 +67,8 @@
 
 <div id="container" class="flex flex-col justify-center items-center font-mono">
     {#if loaded}
-        <h1 transition:fly={{ y: 20, duration: 300 }} class="text-white mt-5 font-bold text-2xl font-mono">Hi, I'm Eddie!</h1>
-        <p transition:fly={{ y: 30, duration: 500 }} class="text-white font-mono">Your next best Software Engineer / Data Engineer</p>
+        <h1 transition:fly|local={{ y: 20, duration: 300 }} class="text-white mt-5 font-bold text-2xl font-mono">Hi, I'm Eddie!</h1>
+        <p transition:fly|local={{ y: 30, duration: 500 }} class="text-white font-mono">Your next best Software Engineer / Data Engineer</p>
     {/if}
     <!-- Gonna have to figure out how to make an image carousel and how to sorta upload images maybe sorta autonomously -->
     <div class="flex flex-row select-none" transition:fade={{ delay: 150 }}>
@@ -81,7 +78,7 @@
             <button class="invisible m-2 pl-5">&#60;</button>
         {/if}
 
-        {#each [pics[index]] as pic}
+        {#each [pics[index]] as pic (index)}
             <img src={pic} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md object-contain border-4 border-white">
         {/each}
         
