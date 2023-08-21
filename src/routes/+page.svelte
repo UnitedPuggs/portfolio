@@ -115,10 +115,10 @@
         {#if aboutMeVis}
             <div transition:slide>
             <p class="text-gray-40">
-                I'm a computer science student of CSU - Fullerton who graduated in May 2023. I'm looking for full-time roles related to software engineering, data engineering, or anything where I can make an impact! 
-                I love learning and intend to finish up a second degree (of which I'm halfway completed with) in Electrical Engineering and possibly some more in the future after I achieve financial stability. In case it wasn't obvious,
+                I'm a computer science student of CSU - Fullerton who graduated in May 2023 with a B.S. in CS. I'm looking for full-time roles related to software engineering, data engineering, or anything where I can make an impact! 
+                <br>I love learning and intend to finish up a second degree (of which I'm halfway completed with) in Electrical Engineering and possibly some more in the future after I achieve financial stability. <br>In case it wasn't obvious,
                 I love cars, motorcycles, and just motorsports in general. I have a little track monster '01 Mazda Miata I've been modifying and repairing for a few years and 3 other vehicles at the moment. I'd be incredibly interested
-                at the opportunity to actually work on the software side of car manufacturing! My specializations are full-stack web development with a smidge of data science/engineering. I'm interested in learning more about
+                at the opportunity to actually work on the software side of car manufacturing! <br>My specializations are full-stack web development with a smidge of data science/engineering. I'm interested in learning more about
                 human-computer interaction, machine learning, and embedded software/systems.
             </p>
             </div>
