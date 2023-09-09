@@ -68,10 +68,10 @@
 <div id="container" class="flex flex-col justify-center items-center font-mono">
     {#if loaded}
         <h1 transition:fly|local={{ y: 20, duration: 300 }} class="text-white mt-5 font-bold text-2xl font-mono">Hi, I'm Eddie!</h1>
-        <p transition:fly|local={{ y: 30, duration: 500 }} class="text-white font-mono">Your next best Software Engineer / Data Engineer</p>
-    {/if}
+        <p transition:fly|local={{ y: 30, duration: 500 }} class="text-white font-mono">Your next best Software Engineer :)</p>
+    
     <!-- Gonna have to figure out how to make an image carousel and how to sorta upload images maybe sorta autonomously -->
-    <div class="flex flex-row select-none" transition:fade={{ delay: 150 }}>
+    <div class="flex flex-row select-none" transition:fade|local={{ delay: 150 }}>
         {#if index > 0}
             <button class="text-white m-2 pl-5 hover:opacity-75" on:click={back}>&#60;</button>
         {:else}
@@ -88,23 +88,19 @@
             <button class="invisible m-2 pr-5">&#60;</button>
         {/if}
     </div>
-    <div class="text-white mt-10 mb-10 flex flex-col text-left max-w-3xl" transition:fade={{ delay: 100 }}>
+    <div class="text-white mt-10 mb-10 flex flex-col text-left max-w-3xl" transition:fade|local={{ delay: 100 }}>
         <button class="hover:opacity-75 m-1" on:click={toggleExperience}>{expButton}</button>
         {#if experienceVis}
             <div transition:slide>
-            <p><strong>Clubspeed</strong> - Aug. 2021 - Now<br>
-            <strong><em>Jr. Software Engineer</em></strong><br>
-                <ul class="list-disc pl-5">
-                    <li>Primarily working on booking software built with NextJS 12, assisting create more dynamically styled components with TailwindCSS</li>
-                    <li>Serving as a pillar of knowledge for technologies for newer projects, namely Redux, Redux Saga, and NextJS.</li>
-                    <li>Contributing to the development and move to cloud-based software and increased modularity of existing parts of the core product.</li>
-                </ul>
-            <strong><em>IT Support Engineer / Automation Specialist (Aug. 2021 - Aug. 2023)</em></strong><br>
+            <p><strong>Clubspeed</strong> - Aug. 2021 - Sep. 2023<br>
+            <strong><em>IT Support Engineer / Automation Specialist</em></strong><br>
                <ul class="list-disc pl-5">
                     <li>Provided technical support for the company's software, contributing greatly to general knowledge relating to SQL and the use of PowerShell scripts to more quickly onboard customers.</li>
                     <li>Created complex T-SQL queries that helped speed up or automate manual tasks for customers pertaining to racing data for tens of thousands of guests and generating pre-made bookings by customer request.</li>
                     <li>Developed PowerShell and batch scripts that saved up to 40 man hours per year for SSL cert updates.</li>
                     <li>Continuous development of an internal tool in the form of a Chrome extension that utilizes internal APIs to more efficiently display useful customer information.</li>
+                    <li>Worked with the company's software engineers on a booking software built with NextJS 12 and assisted with improving dynamically styled components using TailwindCSS</li>
+                    <li>Served as a resource for newer support techs to ask questions about more complex issues or issues involving customer SQL databases.</li>
                </ul>
             </div>
         {/if}
@@ -131,5 +127,6 @@
             </p>
             </div>
         {/if}
-    </div >
+    </div>
+    {/if}
 </div>
