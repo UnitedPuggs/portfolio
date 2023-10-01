@@ -4,7 +4,7 @@
     
     let pics = []
     let index = 0;
-    let loaded = false;
+    let loaded = true;
 
     let experienceVis = false;
     let aboutMeVis = false;
@@ -14,14 +14,8 @@
     let aboutMeButton = "about me  v";
     let technicalButton = "technical skills  v";
 
-    async function get_image_urls() {
-        const res = await fetch("/image-urls");
-        const obj = await res.json();
-        for(let i = 0; i < obj.images.length; ++i) {
-            pics.push(obj.images[i].url)
-        }
-        pics = pics;
-    }
+    export let data;
+    pics = data.images
 
     function next() {
         index = (index + 1) % pics.length;
@@ -55,10 +49,6 @@
             technicalButton = "technical skills  v";
     }
 
-    onMount(() => {
-         loaded = true; 
-         get_image_urls();
-    });
 </script>
 
 <svelte:head>
@@ -78,9 +68,7 @@
             <button class="invisible m-2 pl-5">&#60;</button>
         {/if}
 
-        {#each [pics[index]] as pic (index)}
-            <img src={pic} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md object-contain border-4 border-white">
-        {/each}
+        <img src={pics[index].url} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md object-contain border-4 border-white">
         
         {#if index != pics.length - 1}
             <button class="text-white m-2 pr-5 hover:opacity-75" on:click={next}>&#62;</button>
