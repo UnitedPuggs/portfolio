@@ -24,6 +24,14 @@
             expButton = "experience  v";
     }
 
+    function toggleTechnical() {
+        technicalVis = !technicalVis;
+        if(technicalVis == true)
+            technicalButton = "technical skills  ʌ"
+        else 
+            technicalButton = "technical skills  v";
+    }
+
     function next_img() {
         if(curr_gallery_idx + 1 < short.length) {
             curr_gallery_img = short[curr_gallery_idx + 1];
@@ -38,6 +46,14 @@
         }
     }
 
+    function scrollIntoView({ target }) {
+		const head = document.querySelector(target.getAttribute('href'));
+		if (!head) return;
+        head.scrollIntoView({
+        behavior: 'smooth'
+        });
+  }
+
     onMount(() => {
         loaded = true;
     })
@@ -47,18 +63,18 @@
     <title>Eddie Poulson</title>
 </svelte:head>
 
-<body class="bg-gradient-to-r from-indigo-400 to-red-300 font-sans text-white mb-10">
+<body class="font-sans text-white mb-10 bg-scroll bg-no-repeat bg-cover" style="background-image: url('/assets/background.jpg')">
     <nav class="mt-10">
         <div class="flex justify-center items-center mx-auto gap-6 font-semibold text-lg border-4 rounded-lg border-white shadow-lg w-fit p-3">
-            <a href="/" class="transition ease-in-out hover:scale-110">Projects</a>
-            <a href="/" class="transition ease-in-out hover:scale-110">About Me</a>
-            <a href="/" class="transition ease-in-out hover:scale-110">Contact Me</a>
+            <a href="#about-me" class="transition ease-in-out hover:scale-110" on:click|preventDefault={scrollIntoView}>About Me</a>
+            <a href="#projects" class="transition ease-in-out hover:scale-110" on:click|preventDefault={scrollIntoView}>Projects</a>
+            <a href="#contact-me" class="transition ease-in-out hover:scale-110" on:click|preventDefault={scrollIntoView}>Contact Me</a>
         </div>
     </nav>
     <div class="flex flex-col justify-center items-center mt-6">
         {#if loaded}
-            <h1 class="text-4xl font-bold drop-shadow-lg" transition:fly={{ y: 300, duration: 500 }}>Hi, I'm Eddie Poulson</h1>
-            <h2 class="text-2xl drop-shadow-md" transition:fly={{ y: 400, duration: 700 }}>your next best software engineer! :)</h2>
+            <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg" transition:fly={{ y: 300, duration: 500 }}>Hi, I'm Eddie Poulson</h1>
+            <h2 class="text-xl md:text-2xl drop-shadow-md" transition:fly={{ y: 400, duration: 700 }}>your next best software engineer! :)</h2>
         {/if}
         <div class="p-2 flex flex-row gap-4">
             <a href="https://github.com/UnitedPuggs">
@@ -68,10 +84,12 @@
                 <img src="/assets/linkin.png" alt="LinkedIn" width=50 class="rounded-full hover:opacity-75">
             </a>
         </div>
-        <p class="text-5xl w-[50rem] mt-2 font-bold text-center">An experienced full-stack web developer with a passion for all things computer science!</p>
+        <p class="text-5xl md:w-[50rem] mt-2 font-bold text-center">An experienced full-stack web developer with a passion for all things computer science!</p>
         <section>
-            <h1 class="text-4xl font-bold drop-shadow-md mt-20">About Me</h1>
-            <p class="text-lg font-semibold w-[60rem]">
+            <h1 id="about-me" class="text-4xl font-bold drop-shadow-md mt-10">
+                About Me
+            </h1>
+            <p class="text-lg font-semibold md:w-[60rem]">
                 I'm an aspiring software engineer, graduating with my B.S. in CS from CSUF in December of 2023! I'm looking for full-time roles related to software engineering,
                 data engineering, or any engineering where I can make an impact!
                 <br><br>
@@ -83,8 +101,8 @@
                 2001 Mazda Miata that I'm planning to track. Maybe I'll add a baja bug or some form of open wheel car to the mix, but that's something in the works. Combining
                 my passion for cars and passion for developing software is something I'm very interested in, and have worked on some car-related projects!
             </p>
-            <div class="flex flex-col justify-center items-center max-w-3xl mx-auto">
-                <button class="hover:opacity-75 m-1 font-semibold text-xl" on:click={toggleExperience}>{expButton}</button>
+            <div class="flex flex-col justify-center items-center max-w-[60rem] mx-auto">
+                <button class="hover:opacity-75 m-1 font-semibold text-xl hover:underline" on:click={toggleExperience}>{expButton}</button>
                 {#if experienceVis}
                 <div transition:slide>
                 <p><strong>Clubspeed</strong> - Aug. 2021 - Sep. 2023<br>
@@ -99,15 +117,27 @@
                    </ul>
                 </div>
                 {/if}
+                <button class="hover:opacity-75 m-1 font-semibold text-xl hover:underline" on:click={toggleTechnical}>{technicalButton}</button>
+                {#if technicalVis}
+                <div transition:slide>
+                    <ul class="list-disc pl-5">
+                        <li><strong>Certs:</strong> PCI Compliance, AWS Cloud Practitioner</li>
+                        <li><strong>Languages:</strong> C++, SQL, Python, Java, JavaScript, HTML, CSS, R, PHP, RUST, ARM Assembly, PowerShell</li>
+                        <li><strong>Technologies:</strong> React, Next.js, SvelteKit, Qt Creator, Linux, git, nginx, Apache2, Redis, Supabase, Pocketbase
+                        TailwindCSS, Pandas, Google Sheets/Excel, GCP, AWS, Auth.js</li>
+                        <li><strong>Interests:</strong> Human-computer interaction, embedded software, machine learning, modifying cars, motorsports, motorcycles</li>
+                    </ul>
+                </div>
+                 {/if}
             </div>
             <!-- Carousel here? -->
-            <div class="pt-4 drop-shadow-xl flex flex-row justify-center">
+            <div class="pt-4 drop-shadow-xl flex flex-row justify-center items-center">
                 {#if curr_gallery_idx > 0}
                     <button class="text-3xl px-2" on:click={ prev_img }>&lt;-</button>
                 {:else}
                     <button class="text-3xl px-2 invisible">&lt;-</button>
                 {/if}
-                <div style="background-image: url('{curr_gallery_img}');" class="bg-cover rounded-md select-none">
+                <div style="background-image: url('{curr_gallery_img}');" class="bg-cover rounded-md select-none justify-center items-center w-fit">
                     <img src={curr_gallery_img} alt="funni" class="h-[40rem] w-[40rem] border-2 border-white rounded-md object-contain bg-cover backdrop-blur-lg"/>
                 </div>
                 {#if curr_gallery_idx + 1 < short.length}
@@ -118,8 +148,8 @@
             </div>
         </section>
         <section>
-            <h1 class="text-4xl font-bold drop-shadow-md mt-10">Projects</h1>
-            <div class="grid grid-cols-2 mt-4 md:gap-x-48 gap-y-6">
+            <h1 id="projects" class="text-3xl md:text-4xl font-bold drop-shadow-md mt-10">Projects</h1>
+            <div class="grid md:grid-cols-2 mt-4 md:gap-x-48 gap-y-6">
                 <Project 
                 title="carcult" 
                 desc="Created by car enthusiasts, for car enthusiasts. A passion project with the aim of connection the enthusiast with the meet. Users are able to create 'garages' where they can add photos of their vehicles. Users are also able to check out what meets are happening nearby with a centralized meet calendar component." 
@@ -154,7 +184,7 @@
             </div>
         </section>
         <section class="font-semibold text-center">
-            <h1 class="text-4xl font-bold drop-shadow-md mt-14">Contact Me</h1>
+            <h1 id="contact-me" class="text-4xl font-bold drop-shadow-md mt-14">Contact Me</h1>
             <a href="https://discordapp.com/users/267060525425229824" 
             class="flex flex-row justify-center items-center h-auto gap-2 border-4 border-white rounded-lg p-2 mt-2 transition ease-in-out hover:scale-110">
                 <img src="/assets/discord.png" alt="discord" width=50>
