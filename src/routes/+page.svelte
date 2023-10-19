@@ -41,7 +41,6 @@
     onMount(() => {
         loaded = true;
     })
-    
 </script>
 
 <svelte:head>
@@ -74,7 +73,7 @@
             <h1 class="text-4xl font-bold drop-shadow-md mt-20">About Me</h1>
             <p class="text-lg font-semibold w-[60rem]">
                 I'm an aspiring software engineer, graduating with my B.S. in CS from CSUF in December of 2023! I'm looking for full-time roles related to software engineering,
-                data engineerings, or any engineering where I can make an impact!
+                data engineering, or any engineering where I can make an impact!
                 <br><br>
                 Lately, I've been working on web development projects using SvelteKit or Next.js, but I've been slowly expanding into other cool fields! My next/current projects
                 have more of a focus on things concerning data, learning more about computer vision, and trying to re-activate my electrical engineering knowledge with some
@@ -108,8 +107,8 @@
                 {:else}
                     <button class="text-3xl px-2 invisible">&lt;-</button>
                 {/if}
-                <div style="background-image: url('{curr_gallery_img}');" class="bg-cover">
-                <img src={curr_gallery_img} alt="funni" class="h-[40rem] w-[40rem] border-2 border-white rounded-md object-contain bg-cover backdrop-blur-lg"/>
+                <div style="background-image: url('{curr_gallery_img}');" class="bg-cover rounded-md select-none">
+                    <img src={curr_gallery_img} alt="funni" class="h-[40rem] w-[40rem] border-2 border-white rounded-md object-contain bg-cover backdrop-blur-lg"/>
                 </div>
                 {#if curr_gallery_idx + 1 < short.length}
                     <button class="text-3xl px-2" on:click={ next_img }>-&gt;</button>
