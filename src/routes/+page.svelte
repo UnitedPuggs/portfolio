@@ -1,5 +1,4 @@
 <script>
-<<<<<<< HEAD
     import { fly, slide } from "svelte/transition";
     import Project from "$lib/Project.svelte";
     import { onMount } from "svelte";
@@ -7,14 +6,6 @@
     export let data;
     let loaded = false;
     let short = data.images[0].url
-=======
-    import { fade, fly, slide } from 'svelte/transition';
-    import { onMount } from 'svelte';
-    
-    let pics = []
-    let index = 0;
-    let loaded = true;
->>>>>>> 6d14c589f20fba6650e64f15bd72ca18e6f277ab
 
     let experienceVis = false;
     let technicalVis = false;
@@ -22,21 +13,8 @@
     let expButton = "experience  v";
     let technicalButton = "technical skills  v";
 
-<<<<<<< HEAD
     let curr_gallery_img = short[0];
     $: curr_gallery_idx = short.indexOf(curr_gallery_img)
-=======
-    export let data;
-    pics = data.images
-
-    function next() {
-        index = (index + 1) % pics.length;
-    }
-
-    function back() {
-        index = (index - 1) % pics.length;
-    }
->>>>>>> 6d14c589f20fba6650e64f15bd72ca18e6f277ab
 
     function toggleExperience() {
         experienceVis = !experienceVis;
@@ -60,13 +38,10 @@
         }
     }
 
-<<<<<<< HEAD
     onMount(() => {
         loaded = true;
     })
     
-=======
->>>>>>> 6d14c589f20fba6650e64f15bd72ca18e6f277ab
 </script>
 
 <svelte:head>
@@ -86,7 +61,6 @@
             <h1 class="text-4xl font-bold drop-shadow-lg" transition:fly={{ y: 300, duration: 500 }}>Hi, I'm Eddie Poulson</h1>
             <h2 class="text-2xl drop-shadow-md" transition:fly={{ y: 400, duration: 700 }}>your next best software engineer! :)</h2>
         {/if}
-<<<<<<< HEAD
         <div class="p-2 flex flex-row gap-4">
             <a href="https://github.com/UnitedPuggs">
                 <img src="/assets/github.png" alt="Github" width=50 class="rounded-full hover:opacity-75">
@@ -109,42 +83,6 @@
                 As for some of my personal interests, I love cars, motorcycles, and just motorsports in general! I currently have too many vehicles, but my favorite is my
                 2001 Mazda Miata that I'm planning to track. Maybe I'll add a baja bug or some form of open wheel car to the mix, but that's something in the works. Combining
                 my passion for cars and passion for developing software is something I'm very interested in, and have worked on some car-related projects!
-=======
-
-        <img src={pics[index].url} alt="" class="mt-4 h-96 w-[269px] md:w-[28rem] md:h-[40rem] rounded-md object-contain border-4 border-white">
-        
-        {#if index != pics.length - 1}
-            <button class="text-white m-2 pr-5 hover:opacity-75" on:click={next}>&#62;</button>
-        {:else}
-            <button class="invisible m-2 pr-5">&#60;</button>
-        {/if}
-    </div>
-    <div class="text-white mt-10 mb-10 flex flex-col text-left max-w-3xl" transition:fade|local={{ delay: 100 }}>
-        <button class="hover:opacity-75 m-1" on:click={toggleExperience}>{expButton}</button>
-        {#if experienceVis}
-            <div transition:slide>
-            <p><strong>Clubspeed</strong> - Aug. 2021 - Sep. 2023<br>
-            <strong><em>IT Support Engineer / Automation Specialist</em></strong><br>
-               <ul class="list-disc pl-5">
-                    <li>Provided technical support for the company's software, contributing greatly to general knowledge relating to SQL and the use of PowerShell scripts to more quickly onboard customers.</li>
-                    <li>Created complex T-SQL queries that helped speed up or automate manual tasks for customers pertaining to racing data for tens of thousands of guests and generating pre-made bookings by customer request.</li>
-                    <li>Developed PowerShell and batch scripts that saved up to 40 man hours per year for SSL cert updates.</li>
-                    <li>Continuous development of an internal tool in the form of a Chrome extension that utilizes internal APIs to more efficiently display useful customer information.</li>
-                    <li>Worked with the company's software engineers on a booking software built with NextJS 12 and assisted with improving dynamically styled components using TailwindCSS</li>
-                    <li>Served as a resource for newer support techs to ask questions about more complex issues or issues involving customer SQL databases.</li>
-               </ul>
-            </div>
-        {/if}
-        <button class="hover:opacity-75 m-1" on:click={toggleAboutMe}>{aboutMeButton}</button>
-        {#if aboutMeVis}
-            <div transition:slide>
-            <p class="text-gray-40">
-                I'm a computer science student of CSU - Fullerton who graduated in May 2023 with a B.S. in CS. I'm looking for full-time roles related to software engineering, data engineering, or anything where I can make an impact! 
-                <br>I love learning and intend to finish up a second degree (of which I'm halfway completed with) in Electrical Engineering and possibly some more in the future after I achieve financial stability. <br>In case it wasn't obvious,
-                I love cars, motorcycles, and just motorsports in general. I have a little track monster '01 Mazda Miata I've been modifying and repairing for a few years and 3 other vehicles at the moment. I'd be incredibly interested
-                at the opportunity to actually work on the software side of car manufacturing! <br>My specializations are full-stack web development with a smidge of data science/engineering. I'm interested in learning more about
-                human-computer interaction, machine learning, and embedded software/systems.
->>>>>>> 6d14c589f20fba6650e64f15bd72ca18e6f277ab
             </p>
             <div class="flex flex-col justify-center items-center max-w-3xl mx-auto">
                 <button class="hover:opacity-75 m-1 font-semibold text-xl" on:click={toggleExperience}>{expButton}</button>
