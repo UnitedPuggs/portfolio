@@ -65,7 +65,7 @@
     <section class="flex justify-center items-center text-center lg:max-w-3xl max-w-[20rem] mx-auto mt-4" in:fly={{ y: 500, duration: 900 }}>
         <p class="font-bold text-2xl lg:text-4xl">A software engineer that's very passionate about creating impactful software and quirky little projects, in a town (probably) near you!</p>
     </section>
-    <section class="flex my-4 gap-1" id="carousel" in:fly={{ y: 500, duration: 900 }}>
+    <section class="flex my-4 gap-1 w-max" id="carousel" in:fly={{ y: 500, duration: 900 }}>
         {#each images as image}
             <img src={image} alt="something probably cool as fuck" class="w-fit h-72 object-cover select-none"/>
         {/each}
@@ -123,7 +123,7 @@
             />
         </div>
     </section>
-    <section class="flex flex-col justify-center items-center mt-4 w-7/12 mx-auto" in:fly={{ y: 500, duration: 900 }}>
+    <section class="flex flex-col justify-center items-center mt-4 lg:w-7/12 w-9/12 mx-auto" in:fly={{ y: 500, duration: 900 }}>
         <h1 id="about-me" class="text-3xl font-bold">About Me</h1>
         <p class="text-lg">
             I'm a software engineer and aspiring race car driver! I have my B.S. in Computer Science from <a href="https://www.fullerton.edu/" target="_blank">CSUF</a> and look to
@@ -136,10 +136,11 @@
             something I'm very interested in :)
         </p>
         <div class="mt-4">
-            Technical shit
+            <h2 class="text-3xl font-bold">Technical Skills</h2>
+
         </div>
     </section>
-    <section class="flex flex-col justify-center items-center w-2/12 mx-auto [&>*]:w-full" in:fly={{ y: 500, duration: 900 }}>
+    <section class="flex flex-col justify-center items-center mx-auto lg:w-3/12 [&>*]:w-full" in:fly={{ y: 500, duration: 900 }}>
         <h1 id="contact-me" class="text-3xl font-bold text-center">Contact Me</h1>
         <a href="https://discordapp.com/users/267060525425229824" 
             class="flex flex-row justify-center items-center h-auto gap-2 border-4 border-white rounded-lg p-2 mt-2 transition ease-in-out hover:scale-110">

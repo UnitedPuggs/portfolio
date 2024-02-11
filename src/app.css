@@ -4,13 +4,7 @@
 
 /* Mobile needs a quicker carousel*/
 #carousel {
-    animation: bannermove 7.5s linear infinite;
-}
-
-@media only screen and (min-width: 768px) {
-    #carousel {
-        animation: bannermove 30s linear infinite;
-    }
+    animation: bannermove 30s linear infinite;
 }
 
 @keyframes bannermove {
