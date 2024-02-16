@@ -8,5 +8,5 @@ export async function load() {
     if(error)
         return { "load": error }
 
-    return { images: images}
+    return { images }
 }

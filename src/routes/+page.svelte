@@ -1,200 +1,189 @@
 <script>
-    import { fly, slide } from "svelte/transition";
-    import Project from "$lib/Project.svelte";
     import { onMount } from "svelte";
-
+    import { fly } from 'svelte/transition'
+  import Project from "$lib/Project.svelte";
+  import Skill from "../lib/Skill.svelte";
+    
     export let data;
+    const images = data.images[0].url;
+
     let loaded = false;
-    let short = data.images[0].url
 
-    let experienceVis = false;
-    let technicalVis = false;
-
-    let expButton = "experience  v";
-    let technicalButton = "technical skills  v";
-
-    let curr_gallery_img = short[0];
-    $: curr_gallery_idx = short.indexOf(curr_gallery_img)
-
-    function toggleExperience() {
-        experienceVis = !experienceVis;
-        if(experienceVis == true)
-            expButton = "experience  ʌ"
-        else 
-            expButton = "experience  v";
-    }
-
-    function toggleTechnical() {
-        technicalVis = !technicalVis;
-        if(technicalVis == true)
-            technicalButton = "technical skills  ʌ"
-        else 
-            technicalButton = "technical skills  v";
-    }
-
-    function next_img() {
-        if(curr_gallery_idx + 1 < short.length) {
-            curr_gallery_img = short[curr_gallery_idx + 1];
-            curr_gallery_img = curr_gallery_img;
-        }
-    }
-
-    function prev_img() {
-        if(curr_gallery_idx - 1 >= 0) {
-            curr_gallery_img = short[curr_gallery_idx - 1];
-            curr_gallery_img = curr_gallery_img;
-        }
-    }
+    const me = "Eddie Poulson";
+    const split_me = me.split("");
 
     function scrollIntoView({ target }) {
-		const head = document.querySelector(target.getAttribute('href'));
-		if (!head) return;
-        head.scrollIntoView({
-        behavior: 'smooth'
+        const da_ref = document.querySelector(target.getAttribute('href'));
+        if(!da_ref)
+            return;
+        da_ref.scrollIntoView({
+            behavior: 'smooth'
         });
-  }
+    }
 
     onMount(() => {
         loaded = true;
     })
 </script>
-
 <svelte:head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eddie Poulson</title>
 </svelte:head>
-
-<body class="font-sans text-white mb-10 bg-scroll bg-no-repeat bg-cover" style="background-image: url('/assets/background.jpg')">
-    <nav class="mt-10">
-        <div class="flex justify-center items-center mx-auto gap-6 font-semibold text-lg border-4 rounded-lg border-white shadow-lg w-fit p-3">
-            <a href="#about-me" class="transition ease-in-out hover:scale-110" on:click|preventDefault={scrollIntoView}>About Me</a>
-            <a href="#projects" class="transition ease-in-out hover:scale-110" on:click|preventDefault={scrollIntoView}>Projects</a>
-            <a href="#contact-me" class="transition ease-in-out hover:scale-110" on:click|preventDefault={scrollIntoView}>Contact Me</a>
+<body class="bg-black text-white mt-4 overflow-x-clip">
+    {#if loaded}
+    <section class="flex justify-center items-center sticky top-0 backdrop-blur-sm z-50">
+        <div class="flex lg:flex-row flex-col justify-center items-center lg:justify-normal lg:items-baseline lg:w-1/3 lg:gap-0 gap-4">
+            <div class="flex lg:flex-col lg:gap-0 gap-2 justify-center items-center lg:justify-normal lg:items-baseline">
+                <div>
+                    {#each split_me as char}
+                        {#if char != " "}
+                            <span class="text-3xl font-bold inline-block transition-all ease-out delay-0 duration-700 hover:-translate-y-3">{char}</span>
+                        {:else}
+                            <span>&nbsp;</span>
+                        {/if}
+                    {/each}
+                </div>
+                <span class="text-lg" in:fly={{ y: 400, duration: 600 }}>Software Engineer</span>
+            </div>
+            <div class="flex gap-2 lg:mr-0 lg:ml-auto font-bold hover:[&>*]:opacity-75 [&>*]:text-lg" in:fly={{ y: 400, duration: 700 }}>
+                <a href="#projects" on:click|preventDefault={ scrollIntoView }>Projects</a>
+                <a href="#about-me" on:click|preventDefault={ scrollIntoView }>About Me</a>
+                <a href="#contact-me" on:click|preventDefault={ scrollIntoView }>Contact Me</a>
+            </div>
         </div>
-    </nav>
-    <div class="flex flex-col justify-center items-center mt-6">
-        {#if loaded}
-            <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg" transition:fly={{ y: 300, duration: 500 }}>Hi, I'm Eddie Poulson</h1>
-            <h2 class="text-xl md:text-2xl drop-shadow-md" transition:fly={{ y: 400, duration: 700 }}>your next best software engineer! :)</h2>
-        {/if}
-        <div class="p-2 flex flex-row gap-4">
-            <a href="https://github.com/UnitedPuggs">
+    </section>
+    <section class="flex justify-center mt-4" in:fly={{ y: 500, duration: 900 }}>
+        <div class="flex gap-4">
+            <a href="https://github.com/UnitedPuggs" target="_blank">
                 <img src="/assets/github.png" alt="Github" width=50 class="rounded-full hover:opacity-75">
             </a>
-            <a href="https://www.linkedin.com/in/eddie-poulson/">
-                <img src="/assets/linkin.png" alt="LinkedIn" width=50 class="rounded-full hover:opacity-75">
+            <a href="https://www.linkedin.com/in/eddie-poulson/" target="_blank">
+                <img src="/assets/linkin.png" alt="LinkedIn" width=50 class="hover:opacity-75">
             </a>
         </div>
-        <p class="text-5xl md:w-[50rem] mt-2 font-bold text-center">An experienced full-stack web developer with a passion for all things computer science!</p>
-        <section>
-            <h1 id="about-me" class="text-4xl font-bold drop-shadow-md mt-10">
-                About Me
-            </h1>
-            <p class="text-lg font-semibold md:w-[60rem]">
-                I'm an aspiring software engineer, graduating with my B.S. in CS from CSUF in December of 2023! I'm looking for full-time roles related to software engineering,
-                data engineering, or any engineering where I can make an impact!
-                <br><br>
-                Lately, I've been working on web development projects using SvelteKit or Next.js, but I've been slowly expanding into other cool fields! My next/current projects
-                have more of a focus on things concerning data, learning more about computer vision, and trying to re-activate my electrical engineering knowledge with some
-                light embedded software projects.
-                <br><br>
-                As for some of my personal interests, I love cars, motorcycles, and just motorsports in general! I currently have too many vehicles, but my favorite is my
-                2001 Mazda Miata that I'm planning to track. Maybe I'll add a baja bug or some form of open wheel car to the mix, but that's something in the works. Combining
-                my passion for cars and passion for developing software is something I'm very interested in, and have worked on some car-related projects!
-            </p>
-            <div class="flex flex-col justify-center items-center max-w-[60rem] mx-auto">
-                <button class="hover:opacity-75 m-1 font-semibold text-xl hover:underline" on:click={toggleExperience}>{expButton}</button>
-                {#if experienceVis}
-                <div transition:slide>
-                <p><strong>Clubspeed</strong> - Aug. 2021 - Sep. 2023<br>
-                <strong><em>IT Support Engineer</em></strong><br>
-                   <ul class="list-disc pl-5">
-                        <li>Provided technical support for the company's software, contributing greatly to general knowledge relating to SQL and the use of PowerShell scripts to more quickly onboard customers.</li>
-                        <li>Created complex T-SQL queries that helped speed up or automate manual tasks for customers pertaining to racing data for tens of thousands of guests and generating pre-made bookings by customer request.</li>
-                        <li>Developed PowerShell and batch scripts that saved up to 40 man hours per year for SSL cert updates.</li>
-                        <li>Continuous development of an internal tool in the form of a Chrome extension that utilizes internal APIs to more efficiently display useful customer information.</li>
-                        <li>Worked with the company's software engineers on a booking software built with NextJS 12 and assisted with improving dynamically styled components using TailwindCSS</li>
-                        <li>Served as a resource for newer support techs to ask questions about more complex issues or issues involving customer SQL databases.</li>
-                   </ul>
-                </div>
-                {/if}
-                <button class="hover:opacity-75 m-1 font-semibold text-xl hover:underline" on:click={toggleTechnical}>{technicalButton}</button>
-                {#if technicalVis}
-                <div transition:slide>
-                    <ul class="list-disc pl-5">
-                        <li><strong>Certs:</strong> PCI Compliance, AWS Cloud Practitioner</li>
-                        <li><strong>Languages:</strong> C++, SQL, Python, Java, JavaScript, HTML, CSS, R, PHP, RUST, ARM Assembly, PowerShell</li>
-                        <li><strong>Technologies:</strong> React, Next.js, SvelteKit, Qt Creator, Linux, git, nginx, Apache2, Redis, Supabase, Pocketbase
-                        TailwindCSS, Pandas, Google Sheets/Excel, GCP, AWS, Auth.js</li>
-                        <li><strong>Interests:</strong> Human-computer interaction, embedded software, machine learning, modifying cars, motorsports, motorcycles</li>
-                    </ul>
-                </div>
-                 {/if}
+    </section>
+    <section class="flex justify-center items-center text-center lg:max-w-3xl max-w-[20rem] mx-auto mt-4" in:fly={{ y: 500, duration: 900 }}>
+        <p class="font-bold text-2xl lg:text-4xl">A software engineer that's very passionate about creating impactful software and quirky little projects, in a town (probably) near you!</p>
+    </section>
+    <section class="flex my-4 gap-1 w-max" id="carousel" in:fly={{ y: 500, duration: 900 }}>
+        {#each images as image}
+            <img src={image} alt="something probably cool as fuck" class="w-fit h-72 object-cover select-none"/>
+        {/each}
+        {#each images as image}
+            <img src={image} alt="something probably cool as fuck" class="w-fit h-72 object-cover select-none"/>
+        {/each}
+    </section>
+    <section class="flex flex-col justify-center items-center" in:fly={{ y: 500, duration: 900 }}>
+        <h1 id="projects" class="text-3xl font-bold">Projects</h1>
+        <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 justify-items-center mt-4">
+            <Project 
+            title="carcult" 
+            desc="Created by car enthusiasts, for car enthusiasts. A passion project with the aim of connecting the enthusiast with the meet.
+            Users are able to create 'garage' profiles and add photos of their vehicles. They're also able to check out what meets are happening local to them,
+            as well as a fully-function Facebook Marketplace-esque marketplace, and a Miata.net/CivicX inspired forum."
+            src="https://github.com/UnitedPuggs/carcult"
+            link="https://carcult.org"
+            />
+            <Project
+            title="shortstack"
+            desc="This one was a solution to my problem of sending a bunch of links to cars for sale! Instead of sending 20 links, users can just send one. It
+            also has a funny little pancake theme to it and a feed feature, so that everyone can see what links are being stacked!"
+            src="https://github.com/UnitedPuggs/shortstack"
+            link="https://shortstack.link"
+            />
+            <Project    
+            title="SupportSearch"
+            desc="Internal tool to serve publicly accessible customer info to IT support agents in a more efficient manner. An external website
+            served as host to extra features, such as adding notes to specific customers, a mini API that served requests to a Chrome Extension
+            that served as the 'front-end' (which I also made), and a feature request submission and voting system."
+            src="https://github.com/UnitedPuggs/SupportSearch-Admin"
+            />
+            <Project
+            title="DigiDigits"
+            desc="A Python scripts that utilizes the TCGPlayer API to store market price data for Digimon cards in a SQLite database to create datasets.
+            Data is served to a SvelteKit front-end from a Go back-end. Charts are made using Charts.js. There are plans to eventually attempt market price
+            predictions using time-series forecasting and regression analyis, but the Digimon card market isn't very exciting when it comes to price changes."
+            src="https://github.com/UnitedPuggs/DigiDigits"
+            />
+            <Project
+            title="Jotsync"
+            desc="A glorified notepad web app. It utilizes PocketBase's realtime functionality to allow users to create notes and then share
+            and collaborate on them in realtime. Has a link sharing system and that's really all there is to it. My attempt to circumvent
+            the poorly documented pocketbase auth SSR stuff would make God weep."
+            src="https://github.com/UnitedPuggs/Jotsync"
+            link="https://jotsync.vercel.app"
+            />
+            <Project
+            title="WeekBeat"
+            desc="A Friday Pulse clone, but with some features that aren't (weren't?) currently present, such as anonymous frustrations,
+            suggestions, and celebrations. Notable because I learned Next.js + React over a weekend and built out an MVP in 4 days with just
+            about all of the core functionality of Friday Pulse."
+            src="https://github.com/UnitedPuggs/weekbeat"
+            link="https://weekbeat.vercel.app/login"
+            />
+        </div>
+    </section>
+    <section class="flex flex-col justify-center items-center mt-4 lg:w-7/12 w-9/12 mx-auto" in:fly={{ y: 500, duration: 900 }}>
+        <h1 id="about-me" class="text-3xl font-bold">About Me</h1>
+        <p class="text-lg">
+            I'm a software engineer and aspiring race car driver! I have my B.S. in Computer Science from <a href="https://www.fullerton.edu/" target="_blank">CSUF</a> and look to
+            make some sort of impact with the software I develop. While most of my experience is in full-stack web development, I'm incredibly interested in broadening my view into 
+            everything I'm able to do with the education I spent 4 years pursuing and am incredibly passionate about!
+            <br>
+            <br>
+            Outside of all that computer magic, I'm a huge car nerd! I currently rock a 2001 Mazda Miata, that will eventually make it to a track, and a 2023 Volkswagen GTI. I also rode 
+            motorcycles for a bit, but those have been sold in favor of trying to hunt down my first Porsche 911. Combining my passion for cars and passion for software development is also 
+            something I'm very interested in :)
+        </p>
+        <div class="flex flex-col text-center gap-2 mt-4">
+            <h2 class="text-3xl font-bold">Technical Skills</h2>
+            <span>Languages</span>
+            <div class="flex max-w-lg flex-wrap gap-1 justify-center">
+                <Skill skill="C++"/>
+                <Skill skill="Python" />
+                <Skill skill="Java" />
+                <Skill skill="SQL" />
+                <Skill skill="JavaScript" />
+                <Skill skill="HTML" />
+                <Skill skill="CSS" />
+                <Skill skill="PHP" />
+                <Skill skill="R" />
+                <Skill skill="ARM Assembly" />
+                <Skill skill="Go" />
             </div>
-            <!-- Carousel here? -->
-            <div class="pt-4 drop-shadow-xl flex flex-row justify-center items-center">
-                {#if curr_gallery_idx > 0}
-                    <button class="text-3xl px-2" on:click={ prev_img }>&lt;-</button>
-                {:else}
-                    <button class="text-3xl px-2 invisible">&lt;-</button>
-                {/if}
-                <div style="background-image: url('{curr_gallery_img}');" class="bg-cover rounded-md select-none justify-center items-center w-fit">
-                    <img src={curr_gallery_img} alt="funni" class="h-[40rem] w-[40rem] border-2 border-white rounded-md object-contain bg-cover backdrop-blur-lg"/>
-                </div>
-                {#if curr_gallery_idx + 1 < short.length}
-                    <button class="text-3xl px-2" on:click={ next_img }>-&gt;</button>
-                {:else}
-                    <button class="text-3xl px-2 invisible">-&gt;-</button>
-                {/if}
+            <span>Technologies</span>
+            <div class="flex max-w-lg flex-wrap gap-1 justify-center">
+                <Skill skill="React.js" />
+                <Skill skill="Next.js" />
+                <Skill skill="SvelteKit" />
+                <Skill skill="Qt Creator" />
+                <Skill skill="Linux" />
+                <Skill skill="git" />
+                <Skill skill="nginx" />
+                <Skill skill="PocketBase" />
+                <Skill skill="Supabase" />
+                <Skill skill="TailwindCSS" />
+                <Skill skill="jQuery" />
+                <Skill skill="Django" />
             </div>
-        </section>
-        <section>
-            <h1 id="projects" class="text-3xl md:text-4xl font-bold drop-shadow-md mt-10">Projects</h1>
-            <div class="grid md:grid-cols-2 mt-4 md:gap-x-48 gap-y-6">
-                <Project 
-                title="carcult" 
-                desc="Created by car enthusiasts, for car enthusiasts. A passion project with the aim of connection the enthusiast with the meet. Users are able to create 'garages' where they can add photos of their vehicles. Users are also able to check out what meets are happening nearby with a centralized meet calendar component." 
-                src="https://github.com/UnitedPuggs/carcult" 
-                link="https://carcult.org"/>
-                <Project 
-                title="DigiDigits" 
-                desc="Python script that utilizes the TCGPlayer API to store Digimon card market price data in a SQLite database to create datasets. These datasets are used to create interactive graphs and predict market price data by using time-series forecasting and regression analysis." 
-                src="https://github.com/UnitedPuggs/DigiDigits"
-                />
-                <Project
-                title="WeekBeat"
-                desc="Clone of Friday Pulse, but with features that aren't present currently, such as anonymous frustrations, suggestions, and celebrations. Learned the quirks and features of Next.js over a weekend and built an MVP in approximately 4 days with nearly all the core functionality of Friday Pulse!"
-                src="https://github.com/UnitedPuggs/weekbeat"
-                link="https://weekbeat.vercel.app/"
-                />
-                <Project 
-                title="SupportSearch"
-                desc="Internal tool to serve publicly accessible customer info to support agents in a more efficient manner. External website served as a host to extra features, such as adding notes to specific customers, a mini API that a Chrome extension would utilize, and a feature request submission and voting system."
-                src="https://github.com/UnitedPuggs/SupportSearch-Admin"
-                />
-                <Project 
-                title="CarGos"
-                desc="OfferUp style marketplace with a sole focus on cars and motorcycles, built using a LAMP tech stack hosted on a GCP Computer Engine VM. My responsibilites were developing the API, managing the MySQL database, and managing the project by setting sprint goals and distributing tasks. Implemented the NHTSA API to populate the sell page with most makes, models, and trims. Developed a rudimentary real-time chat so that potential end-users could communicate and conduct sales."
-                src="https://github.com/UnitedPuggs/CarGos"
-                />
-                <Project
-                title="FinanceCalculatorV2"
-                desc="A budget management system. Allows for users to input their expenses and have this program determine their savings and spendings. Allows for goals to be made too. Functionally, it's about 99% complete, just need some flair :)"
-                src="https://github.com/UnitedPuggs/FinanceCalculatorV2"
-                />
-            </div>
-        </section>
-        <section class="font-semibold text-center">
-            <h1 id="contact-me" class="text-4xl font-bold drop-shadow-md mt-14">Contact Me</h1>
-            <a href="https://discordapp.com/users/267060525425229824" 
+        </div>
+    </section>
+    <section class="flex flex-col justify-center items-center mx-auto lg:w-3/12 [&>*]:w-full" in:fly={{ y: 500, duration: 900 }}>
+        <h1 id="contact-me" class="text-3xl font-bold text-center">Contact Me</h1>
+        <a href="https://discordapp.com/users/267060525425229824" 
             class="flex flex-row justify-center items-center h-auto gap-2 border-4 border-white rounded-lg p-2 mt-2 transition ease-in-out hover:scale-110">
-                <img src="/assets/discord.png" alt="discord" width=50>
-                unitedpuggs
-            </a>
-            <a href="mailto:edpoulsonv@gmail.com"
+            <img src="/assets/discord.png" alt="discord" width=50>
+            unitedpuggs
+        </a>
+        <a href="mailto:edpoulsonv@gmail.com"
             class="flex flex-row justify-center items-center h-auto gap-2 border-4 border-white rounded-lg p-2 mt-2 transition ease-in-out hover:scale-110">
-                <img src="/assets/mail.png" alt="mail" width=50>
-                edpoulsonv@gmail.com
-            </a>
-        </section>
-    </div>
+            <img src="/assets/mail.png" alt="mail" width=50>
+            edpoulsonv@gmail.com
+        </a>
+    </section>
+    {/if}
 </body>
+<footer class="mt-6">
+    <hr>
+</footer>
