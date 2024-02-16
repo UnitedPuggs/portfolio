@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { fly } from 'svelte/transition'
   import Project from "$lib/Project.svelte";
+  import Skill from "../lib/Skill.svelte";
     
     export let data;
     const images = data.images[0].url;
@@ -135,9 +136,37 @@
             motorcycles for a bit, but those have been sold in favor of trying to hunt down my first Porsche 911. Combining my passion for cars and passion for software development is also 
             something I'm very interested in :)
         </p>
-        <div class="mt-4">
+        <div class="flex flex-col text-center gap-2 mt-4">
             <h2 class="text-3xl font-bold">Technical Skills</h2>
-
+            <span>Languages</span>
+            <div class="flex max-w-lg flex-wrap gap-1 justify-center">
+                <Skill skill="C++"/>
+                <Skill skill="Python" />
+                <Skill skill="Java" />
+                <Skill skill="SQL" />
+                <Skill skill="JavaScript" />
+                <Skill skill="HTML" />
+                <Skill skill="CSS" />
+                <Skill skill="PHP" />
+                <Skill skill="R" />
+                <Skill skill="ARM Assembly" />
+                <Skill skill="Go" />
+            </div>
+            <span>Technologies</span>
+            <div class="flex max-w-lg flex-wrap gap-1 justify-center">
+                <Skill skill="React.js" />
+                <Skill skill="Next.js" />
+                <Skill skill="SvelteKit" />
+                <Skill skill="Qt Creator" />
+                <Skill skill="Linux" />
+                <Skill skill="git" />
+                <Skill skill="nginx" />
+                <Skill skill="PocketBase" />
+                <Skill skill="Supabase" />
+                <Skill skill="TailwindCSS" />
+                <Skill skill="jQuery" />
+                <Skill skill="Django" />
+            </div>
         </div>
     </section>
     <section class="flex flex-col justify-center items-center mx-auto lg:w-3/12 [&>*]:w-full" in:fly={{ y: 500, duration: 900 }}>
