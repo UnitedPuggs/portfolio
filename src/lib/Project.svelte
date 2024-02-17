@@ -5,7 +5,7 @@
     export let link;
 </script>
 
-<div class="border-4 border-white rounded-lg w-96 backdrop-blur-xl max-h-80 flex flex-col">    
+<div class="border-4 border-white rounded-lg w-96 backdrop-blur-xl max-h-96 flex flex-col">    
     <h3 class="text-center font-bold text-xl pt-2">{title}</h3>
     <span class="overflow-y-auto">
     <p class="p-4">{desc}</p>
