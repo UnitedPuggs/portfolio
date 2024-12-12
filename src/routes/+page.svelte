@@ -32,7 +32,7 @@
 </svelte:head>
 <body class="bg-black text-white mt-4 overflow-x-clip">
     {#if loaded}
-    <section class="flex justify-center items-center sticky top-0 backdrop-blur-sm z-50">
+    <section class="flex justify-center items-center sticky top-0 backdrop-blur-sm z-50 py-2">
         <div class="flex lg:flex-row flex-col justify-center items-center lg:justify-normal lg:items-baseline lg:w-1/3 lg:gap-0 gap-4">
             <div class="flex lg:flex-col lg:gap-0 gap-2 justify-center items-center lg:justify-normal lg:items-baseline">
                 <div>
@@ -90,7 +90,6 @@
             desc="This one was a solution to my problem of sending a bunch of links to cars for sale! Instead of sending 20 links, users can just send one. It
             also has a funny little pancake theme to it and a feed feature, so that everyone can see what links are being stacked!"
             src="https://github.com/UnitedPuggs/shortstack"
-            link="https://shortstack.link"
             />
             <Project    
             title="SupportSearch"
@@ -124,17 +123,16 @@
             />
         </div>
     </section>
-    <section class="flex flex-col justify-center items-center mt-4 lg:w-7/12 w-9/12 mx-auto" in:fly={{ y: 500, duration: 900 }}>
+    <section class="flex flex-col justify-center items-center mt-4 lg:w-7/12 w-80 mx-auto" in:fly={{ y: 500, duration: 900 }}>
         <h1 id="about-me" class="text-3xl font-bold">About Me</h1>
         <p class="text-lg">
-            I'm a software engineer and aspiring race car driver! I have my B.S. in Computer Science from <a href="https://www.fullerton.edu/" target="_blank">CSUF</a> and look to
-            make some sort of impact with the software I develop. While most of my experience is in full-stack web development, I'm incredibly interested in broadening my view into 
-            everything I'm able to do with the education I spent 4 years pursuing and am incredibly passionate about!
+            I'm a software engineer and aspiring race car driver! I have my B.S. in Computer Science from <a href="https://www.fullerton.edu/" target="_blank" class="underline hover:no-underline">CSUF</a> and look to
+            make some sort of impact with the software I develop. While most of my experience thus far is in full-stack web development, I'm incredibly interested in broadening my skillset by working in 
+            other industries where I'm able to better flex the degree I spent 4 years on! VERY interested in working at defense companies (wink wink).
             <br>
             <br>
-            Outside of all that computer magic, I'm a huge car nerd! I currently rock a 2001 Mazda Miata, that will eventually make it to a track, and a 2023 Volkswagen GTI. I also rode 
-            motorcycles for a bit, but those have been sold in favor of trying to hunt down my first Porsche 911. Combining my passion for cars and passion for software development is also 
-            something I'm very interested in :)
+            Outside of all that computer magic, I'm a huge car guy! I currently rock a track-prepped 2001 Mazda Miata, a 2023 VW GTI, and a 1978 Porsche 911SC. I used to ride motorcycles as well, but 
+            those were sold to fund the Porsche. Combining my passion for cars and passion for software development is also something I'm very interested in :)
         </p>
         <div class="flex flex-col text-center gap-2 mt-4">
             <h2 class="text-3xl font-bold">Technical Skills</h2>
@@ -169,7 +167,7 @@
             </div>
         </div>
     </section>
-    <section class="flex flex-col justify-center items-center mx-auto lg:w-3/12 [&>*]:w-full" in:fly={{ y: 500, duration: 900 }}>
+    <section class="flex flex-col justify-center items-center mx-auto lg:w-3/12 [&>*]:w-80" in:fly={{ y: 500, duration: 900 }}>
         <h1 id="contact-me" class="text-3xl font-bold text-center">Contact Me</h1>
         <a href="https://discordapp.com/users/267060525425229824" 
             class="flex flex-row justify-center items-center h-auto gap-2 border-4 border-white rounded-lg p-2 mt-2 transition ease-in-out hover:scale-110">
