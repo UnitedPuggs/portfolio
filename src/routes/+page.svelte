@@ -1,187 +1,105 @@
-<script>
-    import { onMount } from "svelte";
-    import { fly } from 'svelte/transition'
-  import Project from "$lib/Project.svelte";
-  import Skill from "../lib/Skill.svelte";
-    
-    export let data;
-    const images = data.images[0].url;
+<script lang="ts">
+    import linkedin from '$lib/assets/linkedin.png';
+    import github from '$lib/assets/github.png';
+    import resume from '$lib/assets/Resume_EP.pdf';
 
-    let loaded = false;
+    let { data } = $props();
 
-    const me = "Eddie Poulson";
-    const split_me = me.split("");
+    const images: string[] = data.images?.url;
 
-    function scrollIntoView({ target }) {
-        const da_ref = document.querySelector(target.getAttribute('href'));
-        if(!da_ref)
+    const name: string = "Eddie Poulson"
+    const splitName: string[] = name.split("")
+
+    function scrollIntoView({ target }: { target: EventTarget | null }) {
+        const href = document.querySelector((target as HTMLElement).getAttribute('href') ?? '');
+        if (!href) {
             return;
-        da_ref.scrollIntoView({
-            behavior: 'smooth'
-        });
+        } else {
+            href.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     }
-
-    onMount(() => {
-        loaded = true;
-    })
 </script>
 <svelte:head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eddie Poulson</title>
+    <title>{name}</title>
 </svelte:head>
-<body class="bg-black text-white mt-4 overflow-x-clip">
-    {#if loaded}
-    <section class="flex justify-center items-center sticky top-0 backdrop-blur-sm z-50 py-2">
-        <div class="flex lg:flex-row flex-col justify-center items-center lg:justify-normal lg:items-baseline lg:w-1/3 lg:gap-0 gap-4">
-            <div class="flex lg:flex-col lg:gap-0 gap-2 justify-center items-center lg:justify-normal lg:items-baseline">
-                <div>
-                    {#each split_me as char}
-                        {#if char != " "}
-                            <span class="text-3xl font-bold inline-block transition-all ease-out delay-0 duration-700 hover:-translate-y-3">{char}</span>
-                        {:else}
-                            <span>&nbsp;</span>
-                        {/if}
-                    {/each}
-                </div>
-                <span class="text-lg" in:fly={{ y: 400, duration: 600 }}>Software Engineer</span>
+<nav class="flex justify-between items-center sticky top-0 backdrop-blur-sm z-50 py-2 mt-4 w-full">
+    <div class="w-1/2 mx-auto">
+        <div class="flex flex-col">
+            <div>
+                {#each splitName as char}
+                    <span class="text-4xl font-bold inline-block transition-all ease-out delay-0 duration-700 hover:-translate-y-3 {char === ' ' ? 'opacity-0' : ''}">
+                        {char === ' ' ? '\u00A0' : char}
+                    </span>
+                {/each}
             </div>
-            <div class="flex gap-2 lg:mr-0 lg:ml-auto font-bold hover:[&>*]:opacity-75 [&>*]:text-lg" in:fly={{ y: 400, duration: 700 }}>
-                <a href="#projects" on:click|preventDefault={ scrollIntoView }>Projects</a>
-                <a href="#about-me" on:click|preventDefault={ scrollIntoView }>About Me</a>
-                <a href="#contact-me" on:click|preventDefault={ scrollIntoView }>Contact Me</a>
+            <span class="text-lg font-mono">Software Engineer</span>
+            <div class="flex flex-row gap-2">
+                <a href="https://github.com/UnitedPuggs" target="_blank">
+                    <img src={github} alt="github" width=40 class="rounded-full hover:opacity-50"/>
+                </a>
+                <a href="https://www.linkedin.com/in/eddie-poulson/" target="_blank">
+                    <img src={linkedin} alt="linkedin" width=40 class="rounded-full hover:opacity-50"/>
+                </a>
             </div>
         </div>
-    </section>
-    <section class="flex justify-center mt-4" in:fly={{ y: 500, duration: 900 }}>
-        <div class="flex gap-4">
-            <a href="https://github.com/UnitedPuggs" target="_blank">
-                <img src="/assets/github.png" alt="Github" width=50 class="rounded-full hover:opacity-75">
-            </a>
-            <a href="https://www.linkedin.com/in/eddie-poulson/" target="_blank">
-                <img src="/assets/linkin.png" alt="LinkedIn" width=50 class="hover:opacity-75">
-            </a>
+    </div>
+    <div class="flex flex-col gap-2 w-1/4 text-lg font-semibold">
+        <a href="#about-me" onclick={ scrollIntoView } class="underline w-fit hover:no-underline font-mono">About Me</a>
+        <a href="#projects" onclick={ scrollIntoView } class="underline w-fit hover:no-underline font-mono">Personal Projects</a>
+        <div class="flex gap-2">
+            <a href={resume} download class="font-mono underline hover:no-underline">Download resume</a>
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier"> 
+                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M3 14.25C3.41421 14.25 3.75 14.5858 3.75 15C3.75 16.4354 3.75159 17.4365 3.85315 18.1919C3.9518 18.9257 4.13225 19.3142 4.40901 19.591C4.68577 19.8678 5.07435 20.0482 5.80812 20.1469C6.56347 20.2484 7.56459 20.25 9 20.25H15C16.4354 20.25 17.4365 20.2484 18.1919 20.1469C18.9257 20.0482 19.3142 19.8678 19.591 19.591C19.8678 19.3142 20.0482 18.9257 20.1469 18.1919C20.2484 17.4365 20.25 16.4354 20.25 15C20.25 14.5858 20.5858 14.25 21 14.25C21.4142 14.25 21.75 14.5858 21.75 15V15.0549C21.75 16.4225 21.75 17.5248 21.6335 18.3918C21.5125 19.2919 21.2536 20.0497 20.6517 20.6516C20.0497 21.2536 19.2919 21.5125 18.3918 21.6335C17.5248 21.75 16.4225 21.75 15.0549 21.75H8.94513C7.57754 21.75 6.47522 21.75 5.60825 21.6335C4.70814 21.5125 3.95027 21.2536 3.34835 20.6517C2.74643 20.0497 2.48754 19.2919 2.36652 18.3918C2.24996 17.5248 2.24998 16.4225 2.25 15.0549C2.25 15.0366 2.25 15.0183 2.25 15C2.25 14.5858 2.58579 14.25 3 14.25Z" fill="#1C274C"></path> 
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 16.75C12.2106 16.75 12.4114 16.6615 12.5535 16.5061L16.5535 12.1311C16.833 11.8254 16.8118 11.351 16.5061 11.0715C16.2004 10.792 15.726 10.8132 15.4465 11.1189L12.75 14.0682V3C12.75 2.58579 12.4142 2.25 12 2.25C11.5858 2.25 11.25 2.58579 11.25 3V14.0682L8.55353 11.1189C8.27403 10.8132 7.79963 10.792 7.49393 11.0715C7.18823 11.351 7.16698 11.8254 7.44648 12.1311L11.4465 16.5061C11.5886 16.6615 11.7894 16.75 12 16.75Z" fill="#1C274C"></path> 
+                </g>
+            </svg>
         </div>
-    </section>
-    <section class="flex justify-center items-center text-center lg:max-w-3xl max-w-[20rem] mx-auto mt-4" in:fly={{ y: 500, duration: 900 }}>
-        <p class="font-bold text-2xl lg:text-4xl">A software engineer that's very passionate about creating impactful software and quirky little projects, in a town (probably) near you!</p>
-    </section>
-    <section class="flex my-4 gap-1 w-max" id="carousel" in:fly={{ y: 500, duration: 900 }}>
-        {#each images as image}
-            <img src={image} alt="something probably cool as fuck" class="w-fit h-72 object-cover select-none"/>
-        {/each}
-        {#each images as image}
-            <img src={image} alt="something probably cool as fuck" class="w-fit h-72 object-cover select-none"/>
-        {/each}
-    </section>
-    <section class="flex flex-col justify-center items-center" in:fly={{ y: 500, duration: 900 }}>
-        <h1 id="projects" class="text-3xl font-bold">Projects</h1>
-        <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 justify-items-center mt-4">
-            <Project 
-            title="carcult" 
-            desc="Created by car enthusiasts, for car enthusiasts. A passion project with the aim of connecting the enthusiast with the meet.
-            Users are able to create 'garage' profiles and add photos of their vehicles. They're also able to check out what meets are happening local to them,
-            as well as a fully-function Facebook Marketplace-esque marketplace, and a Miata.net/CivicX inspired forum."
-            src="https://github.com/UnitedPuggs/carcult"
-            link="https://carcult.org"
-            />
-            <Project
-            title="shortstack"
-            desc="This one was a solution to my problem of sending a bunch of links to cars for sale! Instead of sending 20 links, users can just send one. It
-            also has a funny little pancake theme to it and a feed feature, so that everyone can see what links are being stacked!"
-            src="https://github.com/UnitedPuggs/shortstack"
-            />
-            <Project    
-            title="SupportSearch"
-            desc="Internal tool to serve publicly accessible customer info to IT support agents in a more efficient manner. An external website
-            served as host to extra features, such as adding notes to specific customers, a mini API that served requests to a Chrome Extension
-            that served as the 'front-end' (which I also made), and a feature request submission and voting system."
-            src="https://github.com/UnitedPuggs/SupportSearch-Admin"
-            />
-            <Project
-            title="DigiDigits"
-            desc="A Python scripts that utilizes the TCGPlayer API to store market price data for Digimon cards in a SQLite database to create datasets.
-            Data is served to a SvelteKit front-end from a Go back-end. Charts are made using Charts.js. There are plans to eventually attempt market price
-            predictions using time-series forecasting and regression analyis, but the Digimon card market isn't very exciting when it comes to price changes."
-            src="https://github.com/UnitedPuggs/DigiDigits"
-            />
-            <Project
-            title="Jotsync"
-            desc="A glorified notepad web app. It utilizes PocketBase's realtime functionality to allow users to create notes and then share
-            and collaborate on them in realtime. Has a link sharing system and that's really all there is to it. My attempt to circumvent
-            the poorly documented pocketbase auth SSR stuff would make God weep."
-            src="https://github.com/UnitedPuggs/Jotsync"
-            link="https://jotsync.vercel.app"
-            />
-            <Project
-            title="WeekBeat"
-            desc="A Friday Pulse clone, but with some features that aren't (weren't?) currently present, such as anonymous frustrations,
-            suggestions, and celebrations. Notable because I learned Next.js + React over a weekend and built out an MVP in 4 days with just
-            about all of the core functionality of Friday Pulse."
-            src="https://github.com/UnitedPuggs/weekbeat"
-            link="https://weekbeat.vercel.app/login"
-            />
-        </div>
-    </section>
-    <section class="flex flex-col justify-center items-center mt-4 lg:w-7/12 w-80 mx-auto" in:fly={{ y: 500, duration: 900 }}>
-        <h1 id="about-me" class="text-3xl font-bold">About Me</h1>
-        <p class="text-lg">
-            I'm a software engineer and aspiring race car driver! I have my B.S. in Computer Science from <a href="https://www.fullerton.edu/" target="_blank" class="underline hover:no-underline">CSUF</a> and look to
-            make some sort of impact with the software I develop. While most of my experience thus far is in full-stack web development, I'm incredibly interested in broadening my skillset by working in 
-            other industries where I'm able to better flex the degree I spent 4 years on! VERY interested in working at defense companies (wink wink).
-            <br>
-            <br>
-            Outside of all that computer magic, I'm a huge car guy! I currently rock a track-prepped 2001 Mazda Miata, a 2023 VW GTI, and a 1978 Porsche 911SC. I used to ride motorcycles as well, but 
-            those were sold to fund the Porsche. Combining my passion for cars and passion for software development is also something I'm very interested in :)
-        </p>
-        <div class="flex flex-col text-center gap-2 mt-4">
-            <h2 class="text-3xl font-bold">Technical Skills</h2>
-            <span>Languages</span>
-            <div class="flex max-w-lg flex-wrap gap-1 justify-center">
-                <Skill skill="C++"/>
-                <Skill skill="Python" />
-                <Skill skill="Java" />
-                <Skill skill="SQL" />
-                <Skill skill="JavaScript" />
-                <Skill skill="HTML" />
-                <Skill skill="CSS" />
-                <Skill skill="PHP" />
-                <Skill skill="R" />
-                <Skill skill="ARM Assembly" />
-                <Skill skill="Go" />
-            </div>
-            <span>Technologies</span>
-            <div class="flex max-w-lg flex-wrap gap-1 justify-center">
-                <Skill skill="React.js" />
-                <Skill skill="Next.js" />
-                <Skill skill="SvelteKit" />
-                <Skill skill="Qt Creator" />
-                <Skill skill="Linux" />
-                <Skill skill="git" />
-                <Skill skill="nginx" />
-                <Skill skill="PocketBase" />
-                <Skill skill="Supabase" />
-                <Skill skill="TailwindCSS" />
-                <Skill skill="jQuery" />
-                <Skill skill="Django" />
-            </div>
-        </div>
-    </section>
-    <section class="flex flex-col justify-center items-center mx-auto lg:w-3/12 [&>*]:w-80" in:fly={{ y: 500, duration: 900 }}>
-        <h1 id="contact-me" class="text-3xl font-bold text-center">Contact Me</h1>
-        <a href="https://discordapp.com/users/267060525425229824" 
-            class="flex flex-row justify-center items-center h-auto gap-2 border-4 border-white rounded-lg p-2 mt-2 transition ease-in-out hover:scale-110">
-            <img src="/assets/discord.png" alt="discord" width=50>
-            unitedpuggs
-        </a>
-        <a href="mailto:edpoulsonv@gmail.com"
-            class="flex flex-row justify-center items-center h-auto gap-2 border-4 border-white rounded-lg p-2 mt-2 transition ease-in-out hover:scale-110">
-            <img src="/assets/mail.png" alt="mail" width=50>
-            edpoulsonv@gmail.com
-        </a>
-    </section>
-    {/if}
-</body>
-<footer class="mt-6">
-    <hr>
-</footer>
+    </div>
+</nav>
+<section class="flex justify-center items-center text-center my-4 mx-auto">
+    <p class="text-2xl font-semibold w-[32rem]">
+        A software engineer that's very passionate about 
+        creating efficient software that has a real impact, and working on quirky little projects!
+    </p>
+</section>
+<section class="flex my-4 gap-0.5 w-max" id="carousel">
+    {#each images as image}
+        <img src={image} alt="carousel" class="w-fit h-72 object-cover select-none">
+    {/each}
+    {#each images as image}
+        <img src={image} alt="carousel" class="w-fit h-72 object-cover select-none">
+    {/each}
+</section>
+<section class="flex flex-col w-1/2 mx-auto">
+    <h1 id="about-me" class="text-2xl font-bold underline font-mono">About Me</h1>
+    <p class="text-lg">
+        I'm a software engineer from Southern California, as well as a bit of an <em>aspiring</em> race car driver.<br> 
+        Currently working as a <s class="text-slate-400">contracted</s> 
+        Software Engineer @ <a href="https://www.linkedin.com/company/capital-group/" class="underline hover:no-underline">Capital Group</a>, where I spend most of my time making our projects more efficient.
+        <br>
+        <br>
+        Outside of all of that computer magic, I'm a big car guy! 
+        The current stable is a track-prepped 2001 Mazda Miata, 2023 VW GTI, 1978 Porsche 911SC, and <sup>1</sup>&frasl;<sub>2</sub> of a 2001 BMW 325iT. I would love any opportunity to combine
+        my passion for cars and software, should an opportunity present itself!
+        <br>
+        <br>
+        Please download my resume to get more of an idea of my educational background, skillset, and work experience.
+    </p>
+</section>
+<section class="flex flex-col w-1/2 mx-auto">
+    <h1 id="projects" class="text-2xl font-bold underline font-mono">Personal Projects</h1>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lectus mi, aliquet non posuere id, semper eu magna. Cras justo ipsum, fringilla a nisl dictum, pretium tempus mi. Aliquam vitae tortor non ligula sodales hendrerit. Nullam vel lorem a mi venenatis molestie. Mauris nec ligula nec massa accumsan vulputate. Vestibulum maximus eleifend malesuada. Nullam scelerisque nibh dui, vitae sagittis neque posuere sed. Nullam egestas diam ac accumsan viverra. Curabitur eget orci ac sem dictum cursus in in leo. Donec commodo mauris non mi tempor, et elementum nunc pharetra. Aenean posuere a odio sit amet facilisis. Donec ut euismod augue. Curabitur ullamcorper feugiat dapibus. Mauris viverra elit dui, tincidunt maximus neque aliquet non.
+
+Ut accumsan volutpat nunc sit amet consectetur. Donec eget semper est. Proin consectetur ut lorem ut ultricies. Curabitur ultricies metus mollis orci vehicula sagittis. Cras sodales posuere lectus. Curabitur suscipit faucibus blandit. Nulla odio justo, sagittis pharetra nibh vel, suscipit sollicitudin felis. Morbi sollicitudin neque eros, ut lobortis leo ultricies eu. Curabitur eu nulla purus. Nam nisl purus, dapibus et consectetur a, varius a diam. Ut mollis nibh dui, a volutpat libero pellentesque quis. Suspendisse vehicula elit eu metus scelerisque molestie. Fusce risus justo, pretium nec molestie non, rhoncus non tortor.
+
+Maecenas pellentesque, odio at aliquet interdum, neque ex feugiat nisi, vitae condimentum nibh dolor eget turpis. Ut ullamcorper metus non mauris suscipit, eget aliquam felis scelerisque. Cras scelerisque orci massa, ac accumsan magna luctus ac. Maecenas vestibulum velit vel dolor efficitur, non cursus odio facilisis. Nullam placerat turpis at nisl iaculis maximus. In pharetra, sem porttitor sollicitudin blandit, nibh dolor congue lectus, hendrerit sodales felis tellus quis nibh. Proin at condimentum leo.
+
+Phasellus feugiat justo eu augue tristique accumsan. Morbi eget congue augue, in ornare quam. Duis viverra sit amet justo non mollis. Sed varius, metus a vestibulum scelerisque, nisi urna consequat nulla, ut sagittis nibh leo nec eros. Ut dictum neque quis sagittis suscipit. Pellentesque ac egestas eros, at porttitor quam. Fusce lacus est, hendrerit vitae efficitur at, tristique eu ex. Suspendisse metus augue, vestibulum sed orci at, bibendum semper quam. Quisque augue orci, porta in suscipit eu, commodo at metus. Vivamus luctus fringilla purus ut cursus. Vestibulum ac commodo nunc.
+
+Nullam erat velit, consectetur quis efficitur eu, imperdiet ut elit. Maecenas vitae eros porta, tincidunt velit vitae, maximus ligula. Nam a libero sed libero ultricies vulputate sed finibus purus. In molestie augue eget quam efficitur vehicula. Nunc pharetra massa nec sapien fermentum, ac vehicula dolor feugiat. Curabitur et malesuada lorem, nec porta ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in urna et enim tincidunt bibendum ut eget urna.
+</section>

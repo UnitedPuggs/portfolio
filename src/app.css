@@ -1,8 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-/* Mobile needs a quicker carousel*/
 #carousel {
     animation: bannermove 30s linear infinite;
 }
