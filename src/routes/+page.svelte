@@ -98,7 +98,7 @@
 	</div>
 </nav>
 <section class="mx-auto my-4 flex items-center justify-center text-center">
-	<p class="w-[32rem] bg-black text-2xl font-semibold lg:text-3xl">
+	<p class="w-[32rem] text-2xl font-semibold lg:text-3xl">
 		A software engineer that's very passionate about creating efficient software that has a real
 		impact, and working on quirky little projects!
 	</p>
@@ -115,7 +115,7 @@
 	<h1 id="about-me" class="text-center font-mono text-2xl font-bold underline lg:text-start">
 		About Me
 	</h1>
-	<p class="bg-black text-lg font-bold">
+	<p class=" text-lg font-bold">
 		I'm a software engineer from Southern California, as well as a bit of an <em>aspiring</em> race
 		car driver.<br />
 		Currently working as a <s class="text-slate-400">contracted</s>
@@ -138,7 +138,7 @@
 <section class="mx-auto flex flex-col p-4 lg:w-1/2 lg:p-0">
 	<h1
 		id="projects"
-		class="mx-auto w-fit bg-black text-center font-mono text-2xl font-bold underline lg:mx-0 lg:text-start"
+		class="mx-auto w-fit text-center font-mono text-2xl font-bold underline lg:mx-0 lg:text-start"
 	>
 		Personal Projects
 	</h1>
