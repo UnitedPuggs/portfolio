@@ -126,7 +126,7 @@
 		<br />
 		<br />
 		Outside of all of that computer magic, I'm a big car guy! The current stable is a track-prepped 2001
-		Mazda Miata, 2023 VW GTI, 1978 Porsche 911SC, and <sup>1</sup>&frasl;<sub>2</sub> of a 2001 BMW
+		Mazda Miata, 2024 VW Golf R, 1978 Porsche 911SC, and <sup>1</sup>&frasl;<sub>2</sub> of a 2001 BMW
 		325iT. I would love any opportunity to combine my passion for cars and software, should an
 		opportunity present itself!
 		<br />
