@@ -9,31 +9,27 @@
 	} = $props();
 </script>
 
-<div class="h-fit w-full rounded-md border p-2 backdrop-blur-lg lg:w-76">
-	<div>
-		<Accordion.Root type="multiple">
-			<Accordion.Item value={props.name}>
-				<Accordion.Trigger><h4 class="text-xl">{props.name}</h4></Accordion.Trigger>
-				<Accordion.Content>
-					<p class="text-lg">{props.description}</p>
-					<div class="flex justify-between pt-4">
-						{#if props.source}
-							<a
-								href={props.source}
-								class="rounded-full border-2 border-white px-2 py-1 text-lg transition hover:scale-90"
-								>Source Code</a
-							>
-						{/if}
-						{#if props.link}
-							<a
-								href={props.link}
-								class="rounded-full border-2 border-white px-2 py-1 text-lg transition hover:scale-90"
-								>View Project</a
-							>
-						{/if}
-					</div>
-				</Accordion.Content>
-			</Accordion.Item>
-		</Accordion.Root>
+<div class="flex flex-col h-64 w-full rounded-xs border border-stone-700 p-2 backdrop-blur-lg lg:w-76">
+	<h4 class="text-xl uppercase font-semibold my-2">{props.name}</h4>
+	<section class="overflow-auto">
+		<p class="opacity-70">{props.description}</p>
+	</section>
+	<div class="flex gap-6 mt-auto mb-0">
+		{#if props.source}
+			<a
+				href={props.source}
+				class="underline hover:no-underline underline-offset-2 decoration-dotted opacity-80"
+				target="_blank"
+				>SOURCE</a
+			>
+		{/if}
+		{#if props.link}
+			<a
+				href={props.link}
+				class="underline hover:no-underline underline-offset-2 decoration-dotted opacity-80"
+				target="_blank"
+				>LIVE →</a
+			>
+		{/if}
 	</div>
 </div>
