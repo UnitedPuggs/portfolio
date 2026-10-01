@@ -58,11 +58,9 @@
 	<p class="text-xl font-semibold lg:text-3xl">
 		Passionate about creating efficient software, and working on whatever's currently in my garage.
 	</p>
-	<div class="mt-2 flex lg:gap-6 gap-4">
-		<span class="opacity-50">Southern California</span>
-		<span class="opacity-50">•</span>
+	<div class="mt-2 flex lg:gap-4 gap-2">
 		<a href="https://github.com/UnitedPuggs" target="_blank" class="opacity-50 hover:opacity-100">GitHub</a>
-		<span class="opacity-50">•</span>
+		<span class="opacity-50">/</span>
 		<a href="https://www.linkedin.com/in/eddie-poulson/" target="_blank" class="opacity-50 hover:opacity-100">LinkedIn</a>
 	</div>
 </section>
@@ -98,7 +96,7 @@
 		<span class="opacity-50 text-sm pt-4">STABLE</span>
 		<ul>
 			<li>'78 Porsche 911SC Targa</li>
-			<li>'24 VW Golf R</li>
+			<li>'23 Audi A5 Sportback</li>
 			<li>'01 BMW 325iT LeMons car</li>
 		</ul>
 		<span class="opacity-50 text-sm pt-4">LOCATION</span>
